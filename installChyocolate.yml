@@ -1,23 +1,14 @@
 ---
-- name: Install Chocolatey and apps on Windows machines
-  hosts: windows
+- name: Test Chocolatey Management
+  hosts: 10.200.5.124
   gather_facts: no
   collections:
-    - ansible.windows
+    - chocolatey.chocolatey
   tasks:
-
     - name: Ensure Chocolatey is installed
-      win_chocolatey:
+      chocolatey.chocolatey.win_chocolatey:
         name: chocolatey
         state: present
-        source: https://community.chocolatey.org/install.ps1
 
-    - name: Install applications using Chocolatey
-      win_chocolatey:
-        name: "{{ item }}"
-        state: present
-      loop:
-        - putty
-        - googlechrome
-        - vscode
+
 
