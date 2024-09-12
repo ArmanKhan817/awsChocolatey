@@ -1,0 +1,20 @@
+---
+- name: Install Chocolatey and apps on Windows machines
+  hosts: windows
+  gather_facts: no
+  tasks:
+
+    - name: Ensure Chocolatey is installed
+      win_chocolatey:
+        name: chocolatey
+        state: present
+        source: https://community.chocolatey.org/install.ps1
+
+    - name: Install applications using Chocolatey
+      win_chocolatey:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - putty
+        - googlechrome
+        - vscode
