@@ -2,16 +2,18 @@
 - name: Install Chocolatey and apps on Windows machines
   hosts: windows
   gather_facts: no
+  collections:
+    - ansible.windows
   tasks:
 
     - name: Ensure Chocolatey is installed
-      ansible.windows.win_chocolatey:
+      win_chocolatey:
         name: chocolatey
         state: present
         source: https://community.chocolatey.org/install.ps1
 
     - name: Install applications using Chocolatey
-      ansible.windows.win_chocolatey:
+      win_chocolatey:
         name: "{{ item }}"
         state: present
       loop:
