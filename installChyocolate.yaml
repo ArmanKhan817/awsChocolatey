@@ -1,16 +1,11 @@
----
-- name: Download python3.12
-  hosts: 10.200.5.124
-  tasks:
-    - name: Install Choco using Powershell
-      win_shell: powershell -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('
-https://chocolatey.org/install.ps1'))"
-    - name: Add Choco to PATH
-      win_shell: SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-    - name: Install Python3 using Choco
-      win_shell: powershell choco install -y python3
-    - name: Verify Chocolatey installation
-      win_command: choco --version
-    - name: Verify Python installation
-      win_command: python --version
-
+- name: NotePad++ installation on MMCS-WIN-01
+   hosts: 10.250.5.116
+   gather_facts: false
+   tasks:
+     - name: Install Notepad++ with Chocolatey module
+       win_chocolatey:
+        name: 
+        - notepadplusplus
+        state: latest
+        ignore_checksum: yes
+        force: true
