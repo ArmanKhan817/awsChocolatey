@@ -1,10 +1,23 @@
-- name: NotePad++ installation on MMCS-WIN-01
-  hosts: "10.250.5.116"
+- name: "Install Chocolatey and Google Chrome"
+  hosts: 10.250.5.116
   gather_facts: false
+  
   tasks:
-    - name: Install Notepad++ with Chocolatey module
-      win_chocolatey:
-        name: notepadplusplus
+    - name: Install Chocolatey and core extension
+      ansible.windows.win_chocolatey:
+        name:
+          - chocolatey
+          - chocolatey-core.extension
+        state: present
+
+    - name: Kill running Chrome processes
+      win_shell: 
+        cmd: Stop-Process -Name "chrome" -Force
+      ignore_errors: yes
+
+    - name: Install Google Chrome
+      ansible.windows.win_chocolatey:
+        name: googlechrome
         state: latest
-        ignore_checksum: yes
+        ignore_checksums: yes
         force: true
