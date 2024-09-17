@@ -1,14 +1,16 @@
 ---
-- name: Test Chocolatey Management
+- name: Download python3.12
   hosts: 10.200.5.124
-  gather_facts: no
-  collections:
-    - chocolatey.chocolatey
   tasks:
-    - name: Ensure Chocolatey is installed
-      chocolatey.chocolatey.win_chocolatey:
-        name: chocolatey
-        state: present
-
-
+    - name: Install Choco using Powershell
+      win_shell: powershell -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('
+https://chocolatey.org/install.ps1'))"
+    - name: Add Choco to PATH
+      win_shell: SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+    - name: Install Python3 using Choco
+      win_shell: powershell choco install -y python3
+    - name: Verify Chocolatey installation
+      win_command: choco --version
+    - name: Verify Python installation
+      win_command: python --version
 
