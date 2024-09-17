@@ -11,8 +11,8 @@
         state: present
 
     - name: Kill running Chrome processes
-      win_shell: 
-        cmd: Stop-Process -Name "chrome" -Force
+      win_shell: |
+        Stop-Process -Name "chrome" -Force
       ignore_errors: yes
 
     - name: Install Google Chrome
