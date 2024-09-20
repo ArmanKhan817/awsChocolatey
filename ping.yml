@@ -1,5 +1,5 @@
 - name: win_ping
-  hosts: 10.250.5.116
+  hosts: 10.250.20.18
   become: false
   gather_facts: false
   tasks:
