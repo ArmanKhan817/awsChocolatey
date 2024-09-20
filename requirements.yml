@@ -1,0 +1,14 @@
+collections:
+  # see https://galaxy.ansible.com/ansible/windows
+  - name: ansible.windows
+    version: 2.4.0
+  # see https://galaxy.ansible.com/chocolatey/chocolatey
+  - name: chocolatey.chocolatey
+    version: 1.5.1
+  # see https://galaxy.ansible.com/community/general
+  - name: community.general
+
+    version: 9.1.0
+  # see https://galaxy.ansible.com/community/windows
+  - name: community.windows
+    version: 2.2.0
