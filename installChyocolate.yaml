@@ -1,5 +1,5 @@
 - name: "Install Chocolatey and Google Chrome"
-  hosts: 10.250.5.116
+  hosts: 10.250.5.47
   gather_facts: false
   
   tasks:
