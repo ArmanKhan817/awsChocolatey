@@ -1,15 +1,8 @@
 ---
-- name: "Install PuTTY on Windows"
-  hosts: 10.250.5.47
+- name: "Run setup_putty.ps1 on remote Windows machine"
+  hosts: 10.250.5.47  
   gather_facts: false
-  
-  collections:
-    - ansible.windows
-
   tasks:
-    - name: Install PuTTY
-      win_chocolatey:
-        name: putty
-        state: present
-        force: true
-        ignore_checksums: yes
+    - name: Run setup_putty.ps1 PowerShell script
+      win_shell: powershell.exe -ExecutionPolicy Bypass -File C:\Temp\setup_putty.ps1
+
