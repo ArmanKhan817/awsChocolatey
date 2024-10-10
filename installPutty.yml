@@ -1,13 +1,7 @@
----
-- name: "Install PuTTY"
-  hosts: 10.250.5.47
-  gather_facts: false
-  
-  collections:
-    - ansible.windows
+- name: Install PuTTY
+  win_chocolatey:
+    name: putty
+    state: present
+    force: true
+    ignore_checksums: yes
 
-  tasks:
-    - name: Install PuTTY
-      win_chocolatey:
-        name: putty
-        state: present
